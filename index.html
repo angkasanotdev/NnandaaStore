@@ -634,8 +634,50 @@
         input, select, textarea{width:100%; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:12px; color:var(--text); outline:none}
         textarea{min-height:100px; resize:vertical}
     .inline{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
-    .pill{display:flex; gap:8px; align-items:center; border:1px solid rgba(255,255,255,.12); padding:10px 12px; border-radius:999px; background:rgba(255,255,255,.03); cursor:pointer}
-    .pill input{accent-color: var(--brand)}
+    .pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(255,255,255,.15);
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.06);
+    cursor: pointer;
+    user-select: none;
+    min-width: 140px; /* FIX untuk iPhone */
+    justify-content: center; /* FIX untuk iPhone */
+    backdrop-filter: blur(6px);
+}
+
+/* Hapus tampilan radio bawaan */
+.pill input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none; /* FIX Safari */
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    background: transparent;
+    position: relative;
+}
+
+/* Tampilan radio saat dipilih */
+.pill input[type="radio"]:checked {
+    background: var(--brand); /* warna pink-mu */
+    border-color: var(--brand);
+}
+
+/* Icon Whatsapp & Telegram */
+.pill i {
+    font-size: 18px;
+    color: var(--brand); /* Pink aesthetic */
+}
+
+/* Teks */
+.pill span {
+    font-weight: 500;
+    color: white;
+}
     .help{font-size:12px; color:var(--muted); margin-top:6px}
     .error{font-size:12px; color: var(--danger); display:none}
     .actions{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
@@ -1237,11 +1279,23 @@
   <div class="row">
       <div>
           <label for="platform">Kirim ke</label>
-              <div class="inline">
-                  <label class="pill"><input type="radio" name="platform" value="wa" checked /> WhatsApp</label>
-                  <label class="pill"><input type="radio" name="platform" value="tg" /> Telegram</label>
-              </div>
-          </div>
+          <div class="inline">
+
+      <label class="pill">
+          <input type="radio" name="platform" value="wa" checked />
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp</span>
+      </label>
+
+      <label class="pill">
+          <input type="radio" name="platform" value="tg" />
+          <i class="fa-brands fa-telegram"></i>
+          <span>Telegram</span>
+      </label>
+
+      </div>
+      </div>
+    </div>
       <div>
           <label for="promo">Kode Promo</label>
           <input type="text" id="promo" placeholder="Masukkan kode promo" />
